@@ -38,7 +38,7 @@ module.exports = {
         // else we sent it back to the spawn to unload its energy
         else {
             if (creep.transfer(spawn, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE){
-                creep.say('To Spawn 🚗')
+                creep.say('To base 🚛')
                 creep.moveTo(spawn);
             }
         }
