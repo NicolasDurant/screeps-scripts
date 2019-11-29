@@ -39,7 +39,7 @@ module.exports.loop = function () {
     }
     // when we are under our minimum harvester count, we first generate more harvesters
     var newCreep = undefined;
-    if (numOfHarvester < minimumHarvesters) {
+    if (numOfHarvesters < minimumHarvesters) {
         newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], undefined, { role : 'harvester' , idle : true});
     } else {
         newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], undefined, { role : 'upgrader' , idle : true});
