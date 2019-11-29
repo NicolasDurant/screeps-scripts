@@ -5,8 +5,8 @@
  * @modify date 2019-11-29 14:35:15
  * @desc Entry Script for our Colony.
  */
-var _HARVESTER = require('./roles/harvester');
-var _UPGRADER = require('./roles/upgrader');
+var _HARVESTER = require('role.harvester');
+var _UPGRADER = require('role.upgrader');
 
 // The spawn object is static for now.
 const gameSpawn = Game.spawns['Spawn1']
