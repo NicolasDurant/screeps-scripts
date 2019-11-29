@@ -1,6 +1,27 @@
-const gameSpawn = Game.spawns['Spawn1']
+/**
+ * @author Nicolas Durant
+ * @email nicolasdurant@t-online.de
+ * @create date 2019-11-29 14:18:41
+ * @modify date 2019-11-29 14:21:56
+ * @desc Harvester Role for a Creep. It will harvest Energy and put it into the Spawn.
+ */
+
+
+/**
+ * @export
+ * @class Upgrader
+ */
 export default class Upgrader {
-    run(creep){
+    
+    /**
+     * Defines the behavior of our Upgrader Creeo.
+     * 
+     * @param {any} creep - Creep Object
+     * @param {any} spawn - Spawn Object
+     * 
+     * @memberOf Upgrader
+     */
+    run(creep, spawn){
         // the creep is fully packed
         if (creep.memory.idle && creep.carry.energy === creep.carryCapacity){
             console.log(`${name} finished harvesting`);
@@ -21,9 +42,9 @@ export default class Upgrader {
         }
         // else we sent it back to the spawn to unload its energy
         else {
-            if (creep.transfer(gameSpawn, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE){
+            if (creep.transfer(spawn, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE){
                 console.log(`sending ${name} to spawn`);
-                creep.moveTo(gameSpawn);
+                creep.moveTo(spawn);
             }
         }
     }
