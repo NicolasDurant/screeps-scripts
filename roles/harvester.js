@@ -10,7 +10,7 @@
  * @export
  * @class Upgrader
  */
-export default class Harvester {
+module.exports = {
     
     /**
      * Defines the behavior of our Upgrader Creeo.

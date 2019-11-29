@@ -5,8 +5,8 @@
  * @modify date 2019-11-29 14:35:15
  * @desc Entry Script for our Colony.
  */
-import Harvester from './roles/harvester';
-import Upgrader from './roles/upgrader';
+var _HARVESTER = require('./roles/harvester');
+var _UPGRADER = require('./roles/upgrader');
 
 // The spawn object is static for now.
 const gameSpawn = Game.spawns['Spawn1']
@@ -31,9 +31,9 @@ module.exports.loop = function () {
             console.log(`name of our creep: ${name}`);
             // decide the actions of our creep depending on its role memory
             if (creep.role === 'harvester') {
-                Harvester.run(creep, gameSpawn);
+                _HARVESTER.run(creep, gameSpawn);
             } else if (creep.role === 'upgrader') {
-                Upgrader.run(creep, gameSpawn);
+                _UPGRADER.run(creep, gameSpawn);
             }
         }
     }

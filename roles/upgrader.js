@@ -6,11 +6,7 @@
  * @desc Upgrader Role for a Creep. It will harvest Energy and put it into the Room Controller.
  */
 
-/**
- * @export
- * @class Upgrader
- */
-export default class Upgrader {
+module.exports =  {
     /**
      * The function that is defining the creeps behavior.
      * 
