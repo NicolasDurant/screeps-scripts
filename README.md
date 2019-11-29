@@ -14,7 +14,8 @@ To make VS Code work with ScreepsAutocomplete to enjoy auto-completion functiona
 * Installing https://github.com/typings/typings globally with `npm install typings --global`
 * Downloading https://github.com/Garethp/ScreepsAutocomplete
 * Extracting it into the project folder (location shouldn't matter)
-* Creating a `jsconfig.json` on root level
+* Creating a `jsconfig.json` on root level with
+`{ "compilerOptions": { "target": "ES6" }, "exclude": [ "node_modules" ] }`
 * Creating a `_references.js` in the ScreepsAutocomplete folder and filling it with this info:
 ```javascript
 /// <reference path="ConstructionSite.js" />
