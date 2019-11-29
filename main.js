@@ -28,7 +28,7 @@ module.exports.loop = function () {
             const creep = Game.creeps[selectedCreep];
             // and its name
             const name = creep.name;
-            console.log(`name of our creep: ${name} its role is ${creep.memory.role}`);
+            console.log('NAME: ' + name + ', ROLE: ' + creep.memory.role);
             // decide the actions of our creep depending on its role memory
             if (creep.memory.role === 'harvester') {
                 _HARVESTER.run(creep, gameSpawn, name);
@@ -39,7 +39,6 @@ module.exports.loop = function () {
     }
     // when we are under our minimum harvester count, we first generate more harvesters
     var newCreep = undefined;
-    console.log(`Number of Harvesters: ${numOfHarvesters}`)
     if (numOfHarvesters < minimumHarvesters) {
         var newName = 'harvester' + Game.time;
         newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: `harvester` , idle : true}});
@@ -48,13 +47,14 @@ module.exports.loop = function () {
         newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: `upgrader` , idle : true}});
     }
     if (!(newCreep < 0)) {
-        console.log(`!!!We spawned a new Creep: ${newName}!!!`)
+        console.log('We spawned a new Creep: ' + newName + '🍾')
     }
     // check if we can remove dead creeps from the memory
     for (const memoryCreeps in Memory.creeps) {
         if (Memory.creeps.hasOwnProperty(memoryCreeps)) {
             const element = Memory.creeps[memoryCreeps];
-            if (Game.creeps[element] == undefined){
+            if (Game.creeps[element] === undefined){
+                console.log('This fellow died: ' + Game.creeps[element])
                 delete element
             }
         }
