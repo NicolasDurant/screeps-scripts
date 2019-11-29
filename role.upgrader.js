@@ -16,31 +16,31 @@ module.exports =  {
      * 
      * @memberOf Upgrader
      */
-    run: function (creep, spawn, name){
+    run: function (creep, name){
         // room controller that we sent the upgrader to
         const roomController = creep.room.controller;
         // the creep is fully packed
         if (creep.memory.idle && creep.carry.energy === creep.carryCapacity){
-            console.log(name + ' finished harvesting');
+            creep.say('Finished harvesting 👍')
             creep.memory.idle = false;
         }
         // if the creep is empty or has not the idle memory yet
         else if (!creep.memory.idle && creep.carry.energy === 0){
-            console.log(name + ' finished depositing');
+            creep.say('Finished depositing 👍')
             creep.memory.idle = true;
         }
         // if the creep is idle, we sent it to the next source that is still harvestable (ACTIVE)
         if (creep.memory.idle) {
             const target = creep.pos.findClosestByRange(FIND_SOURCES_ACTIVE);
             if (creep.harvest(target) === ERR_NOT_IN_RANGE){
-                console.log(name + ' goes working');
+                creep.say('To work 🤮')
                 creep.moveTo(target);
             }
         }
         // else we sent it to the room controller to transfer energy
         else {
             if (creep.upgradeController(roomController) === ERR_NOT_IN_RANGE){
-                console.log(name + ' goes to the room controller');
+                creep.say('To the RCL 🚗 ')
                 creep.moveTo(roomController);
             }
         }
