@@ -6,21 +6,17 @@
  * @desc Harvester Role for a Creep. It will harvest Energy and put it into the Spawn.
  */
 
-/**
- * @export
- * @class Upgrader
- */
 module.exports = {
-    
     /**
-     * Defines the behavior of our Upgrader Creeo.
+     * The function that is defining the creeps behavior.
      * 
      * @param {any} creep - Creep Object
      * @param {any} spawn - Spawn Object
+     * @param {any} name - Name of our Creep
      * 
      * @memberOf Upgrader
      */
-    run(creep, spawn){
+    run: function (creep, spawn, name) {
         // the creep is fully packed
         if (creep.memory.idle && creep.carry.energy === creep.carryCapacity){
             console.log(`${name} finished harvesting`);

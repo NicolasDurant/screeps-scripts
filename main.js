@@ -28,24 +28,27 @@ module.exports.loop = function () {
             const creep = Game.creeps[selectedCreep];
             // and its name
             const name = creep.name;
-            console.log(`name of our creep: ${name}`);
+            console.log(`name of our creep: ${name} its role is ${creep.memory.role}`);
             // decide the actions of our creep depending on its role memory
-            if (creep.role === 'harvester') {
-                _HARVESTER.run(creep, gameSpawn);
-            } else if (creep.role === 'upgrader') {
-                _UPGRADER.run(creep, gameSpawn);
+            if (creep.memory.role === 'harvester') {
+                _HARVESTER.run(creep, gameSpawn, name);
+            } else if (creep.memory.role === 'upgrader') {
+                _UPGRADER.run(creep, gameSpawn, name);
             }
         }
     }
     // when we are under our minimum harvester count, we first generate more harvesters
     var newCreep = undefined;
+    console.log(`Number of Harvesters: ${numOfHarvesters}`)
     if (numOfHarvesters < minimumHarvesters) {
-        newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], 'harvester' + Game.time, { role : 'harvester' , idle : true});
+        var newName = 'harvester' + Game.time;
+        newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: `harvester` , idle : true}});
     } else {
-        newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], 'upgrader' + Game.time, { role : 'upgrader' , idle : true});
+        var newName = 'upgrader' + Game.time;
+        newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: `upgrader` , idle : true}});
     }
     if (!(newCreep < 0)) {
-        console.log(`We spawned a new Creep: ${newCreep}`)
+        console.log(`!!!We spawned a new Creep: ${newName}!!!`)
     }
     // check if we can remove dead creeps from the memory
     for (const memoryCreeps in Memory.creeps) {

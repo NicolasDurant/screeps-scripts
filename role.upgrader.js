@@ -12,10 +12,11 @@ module.exports =  {
      * 
      * @param {any} creep - Creep Object
      * @param {any} spawn - Spawn Object
+     * @param {any} name - Name of our Creep
      * 
      * @memberOf Upgrader
      */
-    run(creep, spawn){
+    run: function (creep, spawn, name){
         // room controller that we sent the upgrader to
         const roomController = creep.room.controller;
         // the creep is fully packed
