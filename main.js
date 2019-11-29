@@ -42,11 +42,8 @@ if (!(newCreep < 0)) {
     console.log('🍾🍾🍾 We spawned a new Creep: ' + newName + ' 🍾🍾🍾')
 }
 // check if we can remove dead creeps from the memory
-for (const memoryCreeps in Memory.creeps) {
-    if (Memory.creeps.hasOwnProperty(memoryCreeps)) {
-        const element = Memory.creeps[memoryCreeps];
-        if (Game.creeps[element] === undefined){
-            delete element
-        }
+for(var i in Memory.creeps) {
+    if(!Game.creeps[i]) {
+        delete Memory.creeps[i];
     }
 }
