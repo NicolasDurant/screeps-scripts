@@ -21,12 +21,12 @@ module.exports =  {
         const roomController = creep.room.controller;
         // the creep is fully packed
         if (creep.memory.idle && creep.carry.energy === creep.carryCapacity){
-            creep.say('Finished harvesting 👍')
+            creep.say('Harvested👍')
             creep.memory.idle = false;
         }
         // if the creep is empty or has not the idle memory yet
         else if (!creep.memory.idle && creep.carry.energy === 0){
-            creep.say('Finished depositing 👍')
+            creep.say('Deposited👍')
             creep.memory.idle = true;
         }
         // if the creep is idle, we sent it to the next source that is still harvestable (ACTIVE)
@@ -40,7 +40,7 @@ module.exports =  {
         // else we sent it to the room controller to transfer energy
         else {
             if (creep.upgradeController(roomController) === ERR_NOT_IN_RANGE){
-                creep.say('To the RCL 🚗 ')
+                creep.say('To RCL 🚗 ')
                 creep.moveTo(roomController);
             }
         }

@@ -19,12 +19,12 @@ module.exports = {
     run: function (creep, spawn, name) {
         // the creep is fully packed
         if (creep.memory.idle && creep.carry.energy === creep.carryCapacity){
-            creep.say('Finished harvesting 👍')
+            creep.say('Harvested👍')
             creep.memory.idle = false;
         }
         // if the creep is empty or has not the idle memory yet
         else if (!creep.memory.idle && creep.carry.energy === 0){
-            creep.say('Finished depositing 👍')
+            creep.say('Deposited👍')
             creep.memory.idle = true;
         }
         // if the creep is idle, we sent it to the next source that is still harvestable (ACTIVE)
@@ -38,7 +38,7 @@ module.exports = {
         // else we sent it back to the spawn to unload its energy
         else {
             if (creep.transfer(spawn, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE){
-                creep.say('To the Spawn 🚗 ')
+                creep.say('To Spawn 🚗')
                 creep.moveTo(spawn);
             }
         }
