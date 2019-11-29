@@ -6,12 +6,11 @@
  * @desc Harvester Role for a Creep. It will harvest Energy and put it into the Spawn.
  */
 
-
 /**
  * @export
  * @class Upgrader
  */
-export default class Upgrader {
+export default class Harvester {
     
     /**
      * Defines the behavior of our Upgrader Creeo.
