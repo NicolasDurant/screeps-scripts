@@ -31,14 +31,20 @@ module.exports =  {
         if (creep.memory.idle) {
             const target = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
             if (creep.harvest(target) === ERR_NOT_IN_RANGE){
-                creep.say('To work 🤮')
+                if (creep.memory.status != 'to_work'){
+                    creep.say('To work 🤮')
+                    creep.memory.status = `to_work`
+                }
                 creep.moveTo(target);
             }
         }
         // else we sent it to the room controller to transfer energy
         else {
             if (creep.upgradeController(roomController) === ERR_NOT_IN_RANGE){
-                creep.say('To RCL 🚗 ')
+                if (creep.memory.status != 'to_rcl'){
+                    creep.say('To RCL 🚗 ')
+                    creep.memory.status = `to_rcl`
+                }
                 creep.moveTo(roomController);
             }
         }

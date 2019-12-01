@@ -44,17 +44,17 @@ for (const selectedCreep in Game.creeps) {
 var newCreep = undefined;
 if (numOfHarvesters < minimumHarvesters) {
     var newName = 'harvester' + Game.time;
-    newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: `harvester` , idle : true}});
+    newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: `harvester` , idle : true, status: `to_base`}});
 } else if (numOfUpgraders < minimumUpgrader) {
     var newName = 'upgrader' + Game.time;
-    newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: `upgrader` , idle : true}});
+    newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: `upgrader` , idle : true, status: `to_rcl`}});
 } else if (numOfBuilders < minimumBuilders) {
     var newName = 'builder' + Game.time;
-    newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: `builder` , idle : true}});
+    newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: `builder` , idle : true, status: `to_build`}});
 } // defaulting to builders because they behave as upgraders when there is nothing to build 
 else {
     var newName = 'builder' + Game.time;
-    newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: `builder` , idle : true}});
+    newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: `builder` , idle : true, status: `to_build`}});
 }
 if (!(newCreep < 0)) {
     console.log('🍾🍾🍾 We spawned a new Creep: ' + newName + ' 🍾🍾🍾')

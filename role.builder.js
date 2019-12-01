@@ -31,7 +31,10 @@ module.exports =  {
         if (creep.memory.idle) {
             const target = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
             if (creep.harvest(target) === ERR_NOT_IN_RANGE){
-                creep.say('To work 🤮')
+                if (creep.memory.status != 'to_work'){
+                    creep.say('To work 🤮')
+                    creep.memory.status = `to_work`
+                }
                 creep.moveTo(target);
             }
         }
@@ -40,7 +43,10 @@ module.exports =  {
             const constructionSite = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
             if (constructionSite) {
                 if (creep.build(constructionSite) === ERR_NOT_IN_RANGE){
-                    creep.say('To Build 🔨')
+                    if (creep.memory.status != 'to_build'){
+                        creep.say('To Build 🔨')
+                        creep.memory.status = `to_build`
+                    }
                     creep.moveTo(constructionSite);
                 }
             }// if there are no more constructions to be build atm, we make the creep an upgrader
