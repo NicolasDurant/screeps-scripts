@@ -51,7 +51,7 @@ module.exports =  {
                 }
             }// if there are no more constructions to be build atm, we make the creep an upgrader
             else{
-                _UPGRADER.run();
+                _UPGRADER.run(creep);
             }
         }
     }
