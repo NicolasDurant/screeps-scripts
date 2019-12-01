@@ -2,7 +2,7 @@
  * @author Nicolas Durant
  * @email nicolasdurant@t-online.de
  * @create date 2019-11-29 14:17:18
- * @modify date 2019-11-29 14:18:02
+ * @modify date 2019-12-01 22:09:44
  * @desc Upgrader Role for a Creep. It will harvest Energy and put it into the Room Controller.
  */
 
@@ -11,12 +11,10 @@ module.exports =  {
      * The function that is defining the creeps behavior.
      * 
      * @param {any} creep - Creep Object
-     * @param {any} spawn - Spawn Object
-     * @param {any} name - Name of our Creep
      * 
      * @memberOf Upgrader
      */
-    run: function (creep, name){
+    run: function (creep){
         // room controller that we sent the upgrader to
         const roomController = creep.room.controller;
         // the creep is fully packed
@@ -31,7 +29,7 @@ module.exports =  {
         }
         // if the creep is idle, we sent it to the next source that is still harvestable (ACTIVE)
         if (creep.memory.idle) {
-            const target = creep.pos.findClosestByRange(FIND_SOURCES_ACTIVE);
+            const target = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
             if (creep.harvest(target) === ERR_NOT_IN_RANGE){
                 creep.say('To work 🤮')
                 creep.moveTo(target);

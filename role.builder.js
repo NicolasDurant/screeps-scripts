@@ -1,21 +1,22 @@
 /**
  * @author Nicolas Durant
  * @email nicolasdurant@t-online.de
- * @create date 2019-11-29 14:18:41
- * @modify date 2019-12-01 22:09:37
- * @desc Harvester Role for a Creep. It will harvest Energy and put it into the Spawn.
+ * @create date 2019-12-01 21:59:53
+ * @modify date 2019-12-01 22:09:50
+ * @desc Role for screeps that should build construction sites.
  */
-
-module.exports = {
+var _UPGRADER = require('role.upgrader');
+module.exports =  {
     /**
      * The function that is defining the creeps behavior.
      * 
      * @param {any} creep - Creep Object
-     * @param {any} spawn - Spawn Object
      * 
      * @memberOf Upgrader
      */
-    run: function (creep, spawn) {
+    run: function (creep){
+        // room controller that we sent the upgrader to
+        const roomController = creep.room.controller;
         // the creep is fully packed
         if (creep.memory.idle && creep.carry.energy === creep.carryCapacity){
             creep.say('Harvested👍')
@@ -34,11 +35,17 @@ module.exports = {
                 creep.moveTo(target);
             }
         }
-        // else we sent it back to the spawn to unload its energy
+        // else we sent it to the next construction site to transfer energy
         else {
-            if (creep.transfer(spawn, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE){
-                creep.say('To base 🚛')
-                creep.moveTo(spawn);
+            const constructionSite = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
+            if (constructionSite) {
+                if (creep.build(constructionSite) === ERR_NOT_IN_RANGE){
+                    creep.say('To Build 🔨')
+                    creep.moveTo(constructionSite);
+                }
+            }// if there are no more constructions to be build atm, we make the creep an upgrader
+            else{
+                _UPGRADER.run();
             }
         }
     }
