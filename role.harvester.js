@@ -16,25 +16,33 @@ module.exports = {
      * @memberOf Upgrader
      */
     run: function (creep) {
+        // shorthand variables for creep memory
+        var moving = creep.memory.moving;
+        var idle = creep.memory.idle;
+        var status = creep.memory.status;
         // the creep is fully packed
-        if (creep.memory.idle && creep.carry.energy === creep.carryCapacity){
+        if (idle && creep.carry.energy === creep.carryCapacity){
             creep.say('Harvested👍')
-            creep.memory.idle = false;
+            idle = false;
+            moving = false;
         }
         // if the creep is empty or has not the idle memory yet
-        else if (!creep.memory.idle && creep.carry.energy === 0){
+        else if (!idle && creep.carry.energy === 0){
             creep.say('Deposited👍')
-            creep.memory.idle = true;
+            idle = true;
+            moving = false;
         }
         // if the creep is idle, we sent it to the next source that is still harvestable (ACTIVE)
-        if (creep.memory.idle) {
+        if (idle) {
             const target = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
-            if (creep.harvest(target) === ERR_NOT_IN_RANGE){
-                if (creep.memory.status != 'to_work'){
+            if (creep.harvest(target) === ERR_NOT_IN_RANGE && !moving){
+                if (status != 'to_work'){
                     creep.say('To work 🤮')
-                    creep.memory.status = `to_work`
+                    status = `to_work`
                 }
                 creep.moveTo(target);
+                // the creep should only get the move command once or it might get stuck in the middle
+                moving = true;
             }
         }
         // else we sent it to the closest not filled energy store to unload its energy
@@ -45,12 +53,14 @@ module.exports = {
                 }
             });
             if (structures) {
-                if (creep.transfer(structures, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE){
-                    if (creep.memory.status != 'to_store'){
+                if (creep.transfer(structures, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE && !moving){
+                    if (status != 'to_store'){
                         creep.say('To store 🚛')
-                        creep.memory.status = `to_store`
+                        status = `to_store`
                     }
                     creep.moveTo(structures);
+                    // the creep should only get the move command once or it might get stuck in the middle
+                    moving = true;
                 }
             }// there should always be somewhere to store
             else{

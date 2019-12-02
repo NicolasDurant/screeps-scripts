@@ -15,39 +15,47 @@ module.exports =  {
      * @memberOf Upgrader
      */
     run: function (creep){
-        // room controller that we sent the upgrader to
-        const roomController = creep.room.controller;
+        // shorthand variables for creep memory
+        var moving = creep.memory.moving;
+        var idle = creep.memory.idle;
+        var status = creep.memory.status;
         // the creep is fully packed
-        if (creep.memory.idle && creep.carry.energy === creep.carryCapacity){
+        if (idle && creep.carry.energy === creep.carryCapacity){
             creep.say('Harvested👍')
-            creep.memory.idle = false;
+            idle = false;
+            moving = false;
         }
         // if the creep is empty or has not the idle memory yet
-        else if (!creep.memory.idle && creep.carry.energy === 0){
+        else if (!idle && creep.carry.energy === 0){
             creep.say('Deposited👍')
-            creep.memory.idle = true;
+            idle = true;
+            moving = false;
         }
         // if the creep is idle, we sent it to the next source that is still harvestable (ACTIVE)
-        if (creep.memory.idle) {
+        if (idle) {
             const target = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
-            if (creep.harvest(target) === ERR_NOT_IN_RANGE){
-                if (creep.memory.status != 'to_work'){
+            if (creep.harvest(target) === ERR_NOT_IN_RANGE && !moving){
+                if (status != 'to_work'){
                     creep.say('To work 🤮')
-                    creep.memory.status = `to_work`
+                    status = `to_work`
                 }
                 creep.moveTo(target);
+                // the creep should only get the move command once or it might get stuck in the middle
+                moving = true;
             }
         }
         // else we sent it to the next construction site to transfer energy
         else {
             const constructionSite = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
             if (constructionSite) {
-                if (creep.build(constructionSite) === ERR_NOT_IN_RANGE){
-                    if (creep.memory.status != 'to_build'){
+                if (creep.build(constructionSite) === ERR_NOT_IN_RANGE && !moving){
+                    if (status != 'to_build'){
                         creep.say('To Build 🔨')
-                        creep.memory.status = `to_build`
+                        status = `to_build`
                     }
                     creep.moveTo(constructionSite);
+                    // the creep should only get the move command once or it might get stuck in the middle
+                    moving = true;
                 }
             }// if there are no more constructions to be build atm, we make the creep an upgrader
             else{
