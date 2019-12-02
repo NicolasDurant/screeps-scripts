@@ -50,7 +50,7 @@ module.exports = {
             newCreep = gameSpawn.createCustomCreep(energy, `builder`, `to_build`);
         }
         if (!(newCreep < 0)) {
-            console.log('🍾🍾🍾 We spawned a new Creep: ' + newName + ' 🍾🍾🍾')
+            console.log('🍾🍾🍾 We spawned a new Creep 🍾🍾🍾')
         }
     },
 
