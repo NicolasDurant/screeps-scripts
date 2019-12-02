@@ -49,7 +49,7 @@ module.exports = {
                         creep.say('To repair 🔄')
                         creep.memory.status = `to_repair`
                     }
-                    creep.moveTo(constructionSite);
+                    creep.moveTo(structures);
                 }
             }// if there are no more constructions to be build atm, we make the creep an upgrader
             else{
