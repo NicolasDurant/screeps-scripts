@@ -40,7 +40,7 @@ module.exports = {
         else {
             const structures = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                 filter: (s) => {
-                    s.hits < s.hitsMax && s.structureType != STRUCTURE_WALL
+                    return s.hits < s.hitsMax && s.structureType != STRUCTURE_WALL
                 }
             });
             if (structures) {

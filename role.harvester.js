@@ -41,7 +41,7 @@ module.exports = {
         else {
             const structures = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
                 filter: (s) => {
-                    s.energy < s.energyCapacity
+                    return s.energy < s.energyCapacity
                 }
             });
             if (structures) {
