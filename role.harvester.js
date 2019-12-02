@@ -41,7 +41,9 @@ module.exports = {
         else {
             const structures = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
                 filter: (s) => {
-                    return s.energy < s.energyCapacity
+                    return (s.structureType == STRUCTURE_EXTENSION 
+                        || s.structureType == STRUCTURE_SPAWN) 
+                        && s.energy < s.energyCapacity
                 }
             });
             if (structures) {
@@ -53,9 +55,7 @@ module.exports = {
                     creep.moveTo(structures);
                 }
             }// there should always be somewhere to store
-            else{
-                console.log('this case should never happen')
-            }
+            else{}
         }
     }
 };
