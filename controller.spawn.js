@@ -18,7 +18,7 @@ module.exports = {
         // number of harvesters before we add other creeps
         const minimumRepairers = 3;
         // number of harvesters before we add other creeps
-        const minimumHarvesters = 10;
+        const minimumHarvesters = 7;
         // number of builders before we add other creeps
         const minimumBuilders = 5;
         // number of builders before we add other creeps
