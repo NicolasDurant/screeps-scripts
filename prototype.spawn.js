@@ -15,6 +15,6 @@ module.exports = function() {
                 body.push(MOVE);
             }
             // create creep with the created body and the given role
-            return this.createCreep(body, roleName + Game.time, { memory: {role: roleName, idle: true, status: status }});
+            return this.createCreep(body, roleName + Game.time, { role: roleName, idle: true, status: status });
         };
 };
