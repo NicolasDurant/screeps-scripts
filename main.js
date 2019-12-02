@@ -51,20 +51,20 @@ for (const selectedCreep in Game.creeps) {
 var newCreep = undefined;
 if (numOfHarvesters < minimumHarvesters) {
     var newName = 'harvester' + Game.time;
-    newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: `harvester` , idle : true, status: `to_base`}});
+    newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: `harvester` , idle : true, status: `to_base`, moving: false}});
 } else if (numOfUpgraders < minimumUpgrader) {
     var newName = 'upgrader' + Game.time;
-    newCreep = gameSpawn.spawnCreep([WORK, CARRY, MOVE, MOVE], newName, {memory: {role: `upgrader` , idle : true, status: `to_rcl`}});
+    newCreep = gameSpawn.spawnCreep([WORK, CARRY, MOVE, MOVE], newName, {memory: {role: `upgrader` , idle : true, status: `to_rcl`, moving: false}});
 } else if (numOfBuilders < minimumBuilders) {
     var newName = 'builder' + Game.time;
-    newCreep = gameSpawn.spawnCreep([WORK, CARRY, MOVE, MOVE], newName, {memory: {role: `builder` , idle : true, status: `to_build`}});
+    newCreep = gameSpawn.spawnCreep([WORK, CARRY, MOVE, MOVE], newName, {memory: {role: `builder` , idle : true, status: `to_build`, moving: false}});
 }else if (numOfRepairers < minimumRepairer) {
     var newName = 'repairer' + Game.time;
-    newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: `repairer` , idle : true, status: `to_repair`}});
+    newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: `repairer` , idle : true, status: `to_repair`, moving: false}});
 }// defaulting to builders because they behave as upgraders when there is nothing to build 
 else {
     var newName = 'builder' + Game.time;
-    newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: `builder` , idle : true, status: `to_build`}});
+    newCreep = gameSpawn.spawnCreep([WORK, WORK, CARRY, MOVE], newName, {memory: {role: `builder` , idle : true, status: `to_build`, moving: false}});
 }
 if (!(newCreep < 0)) {
     console.log('🍾🍾🍾 We spawned a new Creep: ' + newName + ' 🍾🍾🍾')
