@@ -14,13 +14,15 @@ module.exports = {
         // The spawn object is static for now.
         const gameSpawn = Game.spawns['Spawn1']
         // number of harvesters before we add other creeps
-        const minimumUpgrader = 1;
+        const minimumUpgraders = 1;
         // number of harvesters before we add other creeps
-        const minimumRepairer = 2;
+        const minimumRepairers = 3;
         // number of harvesters before we add other creeps
         const minimumHarvesters = 10;
         // number of builders before we add other creeps
         const minimumBuilders = 5;
+        // number of builders before we add other creeps
+        const minimumWallers = 1;
         // current number of harvesters
         var numOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role === 'upgrader')
         // current number of harvesters
@@ -29,6 +31,8 @@ module.exports = {
         var numOfBuilders = _.sum(Game.creeps, (c) => c.memory.role === 'builder')
         // current number of repairers
         var numOfRepairers = _.sum(Game.creeps, (c) => c.memory.role === 'repairer')
+        // current number of wallers
+        var numOfWallers = _.sum(Game.creeps, (c) => c.memory.role === 'waller')
         // when we are under our minimum harvester count, we first generate more harvesters
         var newCreep = undefined;
         // maximum energy capacity 1/2 -> we spawn a creep when all containers are half filled
@@ -39,12 +43,14 @@ module.exports = {
                 // spawn one with the minimum energy
                 newCreep = gameSpawn.createCustomCreep(200, `harvester`, `to_base`);
                 }
-        } else if (numOfUpgraders < minimumUpgrader) {
+        } else if (numOfUpgraders < minimumUpgraders) {
             newCreep = gameSpawn.createCustomCreep(energy, `upgrader`, `to_rcl`);
-        } else if (numOfRepairers < minimumRepairer) {
+        } else if (numOfRepairers < minimumRepairers) {
             newCreep = gameSpawn.createCustomCreep(energy, `repairer`, `to_repair`);
         } else if (numOfBuilders < minimumBuilders) {
             newCreep = gameSpawn.createCustomCreep(energy, `builder`, `to_build`);
+        } else if (numOfWallers < minimumWallers) {
+            newCreep = gameSpawn.createCustomCreep(energy, `waller`, `to_wall`);
         }// defaulting to builders because they behave as upgraders when there is nothing to build 
         else {
             newCreep = gameSpawn.createCustomCreep(energy, `builder`, `to_build`);

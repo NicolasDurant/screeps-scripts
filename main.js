@@ -9,6 +9,7 @@ var _HARVESTER = require('role.harvester');
 var _UPGRADER = require('role.upgrader');
 var _BUILDER = require('role.builder');
 var _REPAIRER = require('role.repairer');
+var _WALLER = require('role.waller');
 var _SPAWN = require('controller.spawn');
 var _TOWER = require('controller.tower');
 // spawn new creeps
@@ -31,6 +32,8 @@ for (const selectedCreep in Game.creeps) {
             _BUILDER.run(creep);
         } else if (creep.memory.role === 'repairer') {
             _REPAIRER.run(creep);
+        } else if (creep.memory.role === 'waller') {
+            _WALLER.run(creep);
         }
     }
 }
