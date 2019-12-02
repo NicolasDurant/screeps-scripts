@@ -20,7 +20,7 @@ module.exports = {
         // number of harvesters before we add other creeps
         const minimumHarvesters = 10;
         // number of builders before we add other creeps
-        const minimumBuilders = 3;
+        const minimumBuilders = 5;
         // current number of harvesters
         var numOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role === 'upgrader')
         // current number of harvesters
@@ -41,10 +41,10 @@ module.exports = {
                 }
         } else if (numOfUpgraders < minimumUpgrader) {
             newCreep = gameSpawn.createCustomCreep(energy, `upgrader`, `to_rcl`);
-        } else if (numOfBuilders < minimumBuilders) {
-            newCreep = gameSpawn.createCustomCreep(energy, `builder`, `to_build`);
         } else if (numOfRepairers < minimumRepairer) {
             newCreep = gameSpawn.createCustomCreep(energy, `repairer`, `to_repair`);
+        } else if (numOfBuilders < minimumBuilders) {
+            newCreep = gameSpawn.createCustomCreep(energy, `builder`, `to_build`);
         }// defaulting to builders because they behave as upgraders when there is nothing to build 
         else {
             newCreep = gameSpawn.createCustomCreep(energy, `builder`, `to_build`);

@@ -9,11 +9,14 @@ var _HARVESTER = require('role.harvester');
 var _UPGRADER = require('role.upgrader');
 var _BUILDER = require('role.builder');
 var _REPAIRER = require('role.repairer');
-var _SPAWN = require('spawn');
+var _SPAWN = require('controller.spawn');
+var _TOWER = require('controller.tower');
 // spawn new creeps
 _SPAWN.spawn();
 // remove dead creeps from memory
 _SPAWN.remove();
+// this will let all towers look out for hostile creeps
+_TOWER.attackEnemies();
 // loop that executes the working commands for our creeps per tick
 for (const selectedCreep in Game.creeps) {
     if (Game.creeps.hasOwnProperty(selectedCreep)) {
