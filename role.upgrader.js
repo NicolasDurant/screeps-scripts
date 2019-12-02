@@ -21,37 +21,31 @@ module.exports =  {
         if (creep.memory.idle && creep.carry.energy === creep.carryCapacity){
             creep.say('Harvested👍')
             creep.memory.idle = false;
-            creep.memory.moving = false;
         }
         // if the creep is empty or has not the idle memory yet
         else if (!creep.memory.idle && creep.carry.energy === 0){
             creep.say('Deposited👍')
             creep.memory.idle = true;
-            creep.memory.moving = false;
         }
         // if the creep is idle, we sent it to the next source that is still harvestable (ACTIVE)
         if (creep.memory.idle) {
             const target = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
-            if (creep.harvest(target) === ERR_NOT_IN_RANGE && !creep.memory.moving){
+            if (creep.harvest(target) === ERR_NOT_IN_RANGE){
                 if (creep.memory.status != 'to_work'){
                     creep.say('To work 🤮')
                     creep.memory.status = `to_work`
                 }
                 creep.moveTo(target);
-                // the creep should only get the move command once or it might get stuck in the middle
-                creep.memory.moving = true;
             }
         }
         // else we sent it to the room controller to transfer energy
         else {
-            if (creep.upgradeController(roomController) === ERR_NOT_IN_RANGE && !creep.memory.moving){
+            if (creep.upgradeController(roomController) === ERR_NOT_IN_RANGE){
                 if (creep.memory.status != 'to_rcl'){
                     creep.say('To RCL 🚗 ')
                     creep.memory.status = `to_rcl`
                 }
                 creep.moveTo(roomController);
-                // the creep should only get the move command once or it might get stuck in the middle
-                creep.memory.moving = true;
             }
         }
     }

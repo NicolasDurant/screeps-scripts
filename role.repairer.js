@@ -19,25 +19,21 @@ module.exports = {
         if (creep.memory.idle && creep.carry.energy === creep.carryCapacity){
             creep.say('Harvested👍')
             creep.memory.idle = false;
-            creep.memory.moving = false;
         }
         // if the creep is empty or has not the idle memory yet
         else if (!creep.memory.idle && creep.carry.energy === 0){
             creep.say('Deposited👍')
             creep.memory.idle = true;
-            creep.memory.moving = false;
         }
         // if the creep is idle, we sent it to the next source that is still harvestable (ACTIVE)
         if (creep.memory.idle) {
             const target = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
-            if (creep.harvest(target) === ERR_NOT_IN_RANGE && !creep.memory.moving){
+            if (creep.harvest(target) === ERR_NOT_IN_RANGE){
                 if (creep.memory.status != 'to_work'){
                     creep.say('To work 🤮')
                     creep.memory.status = `to_work`
                 }
                 creep.moveTo(target);
-                // the creep should only get the move command once or it might get stuck in the middle
-                creep.memory.moving = true;
             }
         }
         // else we sent it to repair decaying structures
@@ -47,15 +43,13 @@ module.exports = {
                     return s.hits < s.hitsMax && s.structureType != STRUCTURE_WALL
                 }
             });
-            if (structures && !creep.memory.moving) {
+            if (structures) {
                 if (creep.repair(structures) === ERR_NOT_IN_RANGE){
                     if (creep.memory.status != 'to_repair'){
                         creep.say('To repair 🔄')
                         creep.memory.status = `to_repair`
                     }
                     creep.moveTo(structures);
-                    // the creep should only get the move command once or it might get stuck in the middle
-                    creep.memory.moving = true;
                 }
             }// if there are no more constructions to be build atm, we make the creep an upgrader
             else{
