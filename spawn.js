@@ -35,7 +35,7 @@ module.exports = {
         var energy = Game.spawns.Spawn1.room.energyCapacityAvailable / 2;
         if (numOfHarvesters < minimumHarvesters) {
             newCreep = gameSpawn.createCustomCreep(energy, `harvester`, `to_base`);
-            if (newCreep == ERR_NOT_ENOUGH_ENERGY && numberOfHarvesters == 0) {
+            if (newCreep == ERR_NOT_ENOUGH_ENERGY && numOfHarvesters == 0) {
                 // spawn one with the minimum energy
                 newCreep = gameSpawn.createCustomCreep(200, `harvester`, `to_base`);
                 }
@@ -50,7 +50,7 @@ module.exports = {
             newCreep = gameSpawn.createCustomCreep(energy, `builder`, `to_build`);
         }
         if (!(newCreep < 0)) {
-            console.log('🍾🍾🍾 We spawned a new Creep 🍾🍾🍾')
+            console.log('🍾🍾🍾 We are spawning a new Creep 🍾🍾🍾')
         }
     },
 
