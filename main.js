@@ -37,7 +37,7 @@ for (const selectedCreep in Game.creeps) {
         const name = creep.name;
         // decide the actions of our creep depending on its role memory
         if (creep.memory.role === 'harvester') {
-            _HARVESTER.run(creep, gameSpawn);
+            _HARVESTER.run(creep);
         } else if (creep.memory.role === 'upgrader') {
             _UPGRADER.run(creep);
         } else if (creep.memory.role === 'builder') {

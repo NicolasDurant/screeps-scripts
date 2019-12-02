@@ -2,8 +2,8 @@
  * @author Nicolas Durant
  * @email nicolasdurant@t-online.de
  * @create date 2019-11-29 14:18:41
- * @modify date 2019-12-01 22:09:37
- * @desc Harvester Role for a Creep. It will harvest Energy and put it into the Spawn.
+ * @modify date 2019-12-02 10:44:15
+ * @desc Harvester Role for a Creep. It will harvest Energy and put it into the closest empty energy store.
  */
 
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
      * 
      * @memberOf Upgrader
      */
-    run: function (creep, spawn) {
+    run: function (creep) {
         // the creep is fully packed
         if (creep.memory.idle && creep.carry.energy === creep.carryCapacity){
             creep.say('Harvested👍')
@@ -37,14 +37,24 @@ module.exports = {
                 creep.moveTo(target);
             }
         }
-        // else we sent it back to the spawn to unload its energy
+        // else we sent it to the closest not filled energy store to unload its energy
         else {
-            if (creep.transfer(spawn, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE){
-                if (creep.memory.status != 'to_base'){
-                    creep.say('To base 🚛')
-                    creep.memory.status = `to_base`
+            const structures = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+                filter: (s) => {
+                    s.energy < s.energyCapacity
                 }
-                creep.moveTo(spawn);
+            });
+            if (structures) {
+                if (creep.transfer(structures, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE){
+                    if (creep.memory.status != 'to_store'){
+                        creep.say('To store 🚛')
+                        creep.memory.status = `to_store`
+                    }
+                    creep.moveTo(structures);
+                }
+            }// there should always be somewhere to store
+            else{
+                console.log('this case should never happen')
             }
         }
     }
