@@ -36,24 +36,25 @@ module.exports = {
         // when we are under our minimum harvester count, we first generate more harvesters
         var newCreep = undefined;
         // maximum energy capacity 1/2 -> we spawn a creep when all containers are half filled
-        var energy = Game.spawns.Spawn1.room.energyCapacityAvailable / 2;
+        // var energy = Game.spawns.Spawn1.room.energyCapacityAvailable / 2;
+        var energy = 900;
         if (numOfHarvesters < minimumHarvesters) {
-            newCreep = gameSpawn.createCustomCreep(energy, `harvester`, `to_base`);
+            newCreep = gameSpawn.createFastCreep(energy, `harvester`, `to_base`);
             if (newCreep == ERR_NOT_ENOUGH_ENERGY && numOfHarvesters == 0) {
                 // spawn one with the minimum energy
-                newCreep = gameSpawn.createCustomCreep(200, `harvester`, `to_base`);
+                newCreep = gameSpawn.createEqualCreep(200, `harvester`, `to_base`);
                 }
         } else if (numOfUpgraders < minimumUpgraders) {
-            newCreep = gameSpawn.createCustomCreep(energy, `upgrader`, `to_rcl`);
+            newCreep = gameSpawn.createFastCreep(energy, `upgrader`, `to_rcl`);
         } else if (numOfRepairers < minimumRepairers) {
-            newCreep = gameSpawn.createCustomCreep(energy, `repairer`, `to_repair`);
+            newCreep = gameSpawn.createFastCreep(energy, `repairer`, `to_repair`);
         } else if (numOfBuilders < minimumBuilders) {
-            newCreep = gameSpawn.createCustomCreep(energy, `builder`, `to_build`);
+            newCreep = gameSpawn.createFastCreep(energy, `builder`, `to_build`);
         } else if (numOfWallers < minimumWallers) {
-            newCreep = gameSpawn.createCustomCreep(energy, `waller`, `to_wall`);
+            newCreep = gameSpawn.createFastCreep(energy, `waller`, `to_wall`);
         }// defaulting to builders because they behave as upgraders when there is nothing to build 
         else {
-            newCreep = gameSpawn.createCustomCreep(energy, `builder`, `to_build`);
+            newCreep = gameSpawn.createFastCreep(energy, `builder`, `to_build`);
         }
         if (!(newCreep < 0)) {
             console.log('🍾🍾🍾 We are spawning a new Creep 🍾🍾🍾')
