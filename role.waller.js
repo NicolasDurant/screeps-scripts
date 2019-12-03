@@ -43,11 +43,11 @@ module.exports = {
                     return s.hits < 5000 && s.structureType === STRUCTURE_WALL
                 }
             });
-            // we want to heal the walls with lowest hitpoints first
-            walls.sort((a,b) => {
-               return a.hits - b.hits
-            });
             if (walls) {
+                // we want to heal the walls with lowest hitpoints first
+                walls.sort((a,b) => {
+                    return a.hits - b.hits
+                });
                 if (creep.repair(walls) === ERR_NOT_IN_RANGE){
                     if (creep.memory.status != 'to_wall'){
                         creep.say('To wall 🧱')

@@ -43,10 +43,10 @@ module.exports = {
                     return s.hits < s.hitsMax && s.structureType != STRUCTURE_WALL
                 }
             });
-            structures.sort((a,b) => {
-                return a.hits - b.hits
-            })
             if (structures) {
+                structures.sort((a,b) => {
+                    return a.hits - b.hits
+                })
                 if (creep.repair(structures) === ERR_NOT_IN_RANGE){
                     if (creep.memory.status != 'to_repair'){
                         creep.say('To repair 🔄')
