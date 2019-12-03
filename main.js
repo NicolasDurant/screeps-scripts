@@ -10,6 +10,7 @@ var _UPGRADER = require('role.upgrader');
 var _BUILDER = require('role.builder');
 var _REPAIRER = require('role.repairer');
 var _WALLER = require('role.waller');
+var _ROOM = require('controller.room');
 var _SPAWN = require('controller.spawn');
 var _TOWER = require('controller.tower');
 // spawn new creeps
@@ -25,15 +26,15 @@ for (const selectedCreep in Game.creeps) {
         const creep = Game.creeps[selectedCreep];
         // decide the actions of our creep depending on its role memory
         if (creep.memory.role === 'harvester') {
-            _HARVESTER.run(creep);
+            _ROOM.checkRoom(creep, _HARVESTER.run(creep));
         } else if (creep.memory.role === 'upgrader') {
-            _UPGRADER.run(creep);
+            _ROOM.checkRoom(creep, _UPGRADER.run(creep));
         } else if (creep.memory.role === 'builder') {
-            _BUILDER.run(creep);
+            _ROOM.checkRoom(creep, _BUILDER.run(creep));
         } else if (creep.memory.role === 'repairer') {
-            _REPAIRER.run(creep);
+            _ROOM.checkRoom(creep, _REPAIRER.run(creep));
         } else if (creep.memory.role === 'waller') {
-            _WALLER.run(creep);
+            _ROOM.checkRoom(creep, _WALLER.run(creep));
         }
     }
 }
