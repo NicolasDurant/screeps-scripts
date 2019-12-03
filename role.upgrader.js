@@ -29,7 +29,7 @@ module.exports =  {
         }
         // if the creep is idle, we sent it to the next source that is still harvestable (ACTIVE)
         if (creep.memory.idle) {
-            const target = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
+            const target = creep.pos.findClosestByPath(FIND_SOURCES);
             if (creep.harvest(target) === ERR_NOT_IN_RANGE){
                 if (creep.memory.status != 'to_work'){
                     creep.say('To work 🤮')
