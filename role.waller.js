@@ -40,28 +40,17 @@ module.exports = {
         else {
             const walls = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                 filter: (s) => {
-                    return s.hits < s.hitsMax && s.structureType === STRUCTURE_WALL
+                    return s.hits < 5000 && s.structureType === STRUCTURE_WALL
                 }
             });
-            var target = undefined;
             // we want to heal the walls with lowest hitpoints first
-            for(let percentage = 0.0001; percentage <= 1; percentage = percentage + 0.0001){
-                target = creep.pos.findClosestByPath(walls, {
-                    filter: (w) => {
-                        return w.hits / w.hitsMax < percentage
-                    }
-                })
-                if(target) {
-                    break;
-                }
-            }
-            if (target) {
-                if (creep.repair(target) === ERR_NOT_IN_RANGE){
+            if (walls) {
+                if (creep.repair(walls) === ERR_NOT_IN_RANGE){
                     if (creep.memory.status != 'to_wall'){
                         creep.say('To wall 🧱')
                         creep.memory.status = `to_wall`
                     }
-                    creep.moveTo(target);
+                    creep.moveTo(walls);
                 }
             }// if there are no more walls to be repaired atm, we make the creep a builder
             else{
