@@ -38,9 +38,9 @@ module.exports = {
         }
         // else we sent it to repair walls
         else {
-            const walls = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+            const walls = creep.room.find(FIND_STRUCTURES, {
                 filter: (s) => {
-                    return s.hits < 5000 && s.structureType === STRUCTURE_WALL
+                    return s.hits < s.hitsMax && s.structureType === STRUCTURE_WALL
                 }
             });
             if (walls) {

@@ -38,7 +38,7 @@ module.exports = {
         }
         // else we sent it to repair decaying structures
         else {
-            const structures = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+            const structures = creep.room.find(FIND_STRUCTURES, {
                 filter: (s) => {
                     return s.hits < s.hitsMax && s.structureType != STRUCTURE_WALL
                 }
