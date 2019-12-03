@@ -17,12 +17,12 @@ module.exports = {
      */
     run: function (creep) {
         // the creep is fully packed
-        if (creep.memory.idle && creep.store === creep.store.getCapacity()){
+        if (creep.memory.idle && creep.store.getUsedCapacity() === creep.store.getCapacity()){
             creep.say('Harvested👍')
             creep.memory.idle = false;
         }
         // if the creep is empty or has not the idle memory yet
-        else if (!creep.memory.idle && creep.store === 0){
+        else if (!creep.memory.idle && creep.store.getUsedCapacity() === 0){
             creep.say('Deposited👍')
             creep.memory.idle = true;
         }
