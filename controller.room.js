@@ -11,7 +11,7 @@ module.exports = {
      * Function that checks if screeps accidently are in the wrong room.
      */
     checkRoom: function (creep, roomToBe, functionToExecute) {
-        if (creep.room.name != roomToBe){
+        if (creep.room.name != roomToBe && creep.carry.energy === creep.carryCapacity){
             creep.moveTo(new RoomPosition(25, 20, roomToBe))
         } else{
             functionToExecute()
