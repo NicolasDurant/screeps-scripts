@@ -60,7 +60,7 @@ module.exports = {
                     creep.moveTo(towers, {reusePath: 5});
                 }
             }
-            if (structures) {
+            if (structures && !towers) {
                 if (creep.transfer(structures, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE){
                     if (creep.memory.status != 'to_store'){
                         creep.say('To store 🚛')
