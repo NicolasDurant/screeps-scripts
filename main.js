@@ -26,21 +26,21 @@ for (const selectedCreep in Game.creeps) {
         const creep = Game.creeps[selectedCreep];
         // decide the actions of our creep depending on its role memory
         let fn;
-        let roomToBeIn = Game.spawns['Spawn1'].name;
+        let roomToBeIn = Game.spawns['Spawn1'].room.name;
         if (creep.memory.role === 'harvester') {
-            fn - function() {_HARVESTER.run(creep)}
+            fn = function() {_HARVESTER.run(creep)}
             _ROOM.checkRoom(creep, roomToBeIn, fn);
         } else if (creep.memory.role === 'upgrader') {
-            fn - function() {_UPGRADER.run(creep)}
+            fn = function() {_UPGRADER.run(creep)}
             _ROOM.checkRoom(creep, roomToBeIn, fn);
         } else if (creep.memory.role === 'builder') {
-            fn - function() {_BUILDER.run(creep)}
+            fn = function() {_BUILDER.run(creep)}
             _ROOM.checkRoom(creep, roomToBeIn, fn);
         } else if (creep.memory.role === 'repairer') {
-            fn - function() {_REPAIRER.run(creep)}
+            fn = function() {_REPAIRER.run(creep)}
             _ROOM.checkRoom(creep, roomToBeIn, fn);
         } else if (creep.memory.role === 'waller') {
-            fn - function() {_WALLER.run(creep)}
+            fn = function() {_WALLER.run(creep)}
             _ROOM.checkRoom(creep, roomToBeIn, fn);
         }
     }
