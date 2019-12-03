@@ -39,13 +39,13 @@ module.exports = {
         // var energy = Game.spawns.Spawn1.room.energyCapacityAvailable / 2;
         var energy = 900;
         if (numOfHarvesters < minimumHarvesters) {
-            newCreep = gameSpawn.createFastCreep(energy, `harvester`, `to_base`);
+            newCreep = gameSpawn.createHarvesterCreep(energy, `harvester`, `to_base`);
             if (newCreep == ERR_NOT_ENOUGH_ENERGY && numOfHarvesters == 0) {
                 // spawn one with the minimum energy
                 newCreep = gameSpawn.createEqualCreep(200, `harvester`, `to_base`);
                 }
         } else if (numOfUpgraders < minimumUpgraders) {
-            newCreep = gameSpawn.createFastCreep(energy, `upgrader`, `to_rcl`);
+            newCreep = gameSpawn.createCarrierCreep(energy, `upgrader`, `to_rcl`);
         } else if (numOfRepairers < minimumRepairers) {
             newCreep = gameSpawn.createFastCreep(energy, `repairer`, `to_repair`);
         } else if (numOfBuilders < minimumBuilders) {

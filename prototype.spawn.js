@@ -37,4 +37,43 @@ module.exports = function() {
             // create creep with the created body and the given role
             return this.spawnCreep(body, roleName + Game.time, {memory: {role: roleName, idle: true, status: status }});
         };
+        // create a new function for StructureSpawn that creates 3:1:1 carry:move:work body parts
+        StructureSpawn.prototype.createCarrierCreep =
+        function(energy, roleName, status) {
+            // create a carry focused creep
+            var numberOfParts = Math.floor(energy / 300);
+            var body = [];
+            for (let i = 0; i < numberOfParts; i++) {
+                body.push(WORK);
+            }
+            for (let i = 0; i < numberOfParts; i++) {
+                body.push(CARRY);
+                body.push(CARRY);
+                body.push(CARRY);
+            }
+            for (let i = 0; i < numberOfParts; i++) {
+                body.push(MOVE);
+            }
+            // create creep with the created body and the given role
+            return this.spawnCreep(body, roleName + Game.time, {memory: {role: roleName, idle: true, status: status }});
+        };
+        // create a new function for StructureSpawn that creates 2:1:1 work:carry:move body parts
+        StructureSpawn.prototype.createHarvesterCreep =
+        function(energy, roleName, status) {
+            // create a carry focused creep
+            var numberOfParts = Math.floor(energy / 300);
+            var body = [];
+            for (let i = 0; i < numberOfParts; i++) {
+                body.push(WORK);
+                body.push(WORK);
+            }
+            for (let i = 0; i < numberOfParts; i++) {
+                body.push(CARRY);
+            }
+            for (let i = 0; i < numberOfParts; i++) {
+                body.push(MOVE);
+            }
+            // create creep with the created body and the given role
+            return this.spawnCreep(body, roleName + Game.time, {memory: {role: roleName, idle: true, status: status }});
+        };
 };
