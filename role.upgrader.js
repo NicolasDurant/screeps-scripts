@@ -14,7 +14,7 @@ module.exports =  {
      * 
      * @memberOf Upgrader
      */
-    run: function (creep, RCL){
+    run: function (creep){
         // room controller that we sent the upgrader to
         var roomController = creep.room.controller;
         // the creep is fully packed
@@ -40,15 +40,12 @@ module.exports =  {
         }
         // else we sent it to the room controller to transfer energy
         else {
-            if (RCL) {
-                roomController = RCL;
-                if (creep.upgradeController(roomController) === ERR_NOT_IN_RANGE){
+            if (creep.upgradeController(roomController) === ERR_NOT_IN_RANGE){
                 if (creep.memory.status != 'to_rcl'){
                     creep.say('To RCL 🚗 ')
                     creep.memory.status = `to_rcl`
                 }
                 creep.moveTo(roomController, {reusePath: 5});
-                }
             }
         }
     }

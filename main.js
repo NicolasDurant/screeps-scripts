@@ -12,7 +12,6 @@ var _REPAIRER = require('role.repairer');
 var _WALLER = require('role.waller');
 var _SPAWN = require('controller.spawn');
 var _TOWER = require('controller.tower');
-const RCL = Game.spawns['Spawn1'].room
 // spawn new creeps
 _SPAWN.spawn();
 // remove dead creeps from memory
@@ -28,7 +27,7 @@ for (const selectedCreep in Game.creeps) {
         if (creep.memory.role === 'harvester') {
             _HARVESTER.run(creep);
         } else if (creep.memory.role === 'upgrader') {
-            _UPGRADER.run(creep, RCL);
+            _UPGRADER.run(creep);
         } else if (creep.memory.role === 'builder') {
             _BUILDER.run(creep);
         } else if (creep.memory.role === 'repairer') {
