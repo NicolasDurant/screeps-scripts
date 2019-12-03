@@ -2,7 +2,7 @@
  * @author Nicolas Durant
  * @email nicolasdurant@t-online.de
  * @create date 2019-11-29 14:25:36
- * @modify date 2019-12-02 15:27:57
+ * @modify date 2019-12-03 15:00:18
  * @desc Entry Script for our Colony.
  */
 var _HARVESTER = require('role.harvester');
@@ -25,16 +25,23 @@ for (const selectedCreep in Game.creeps) {
         // our creep
         const creep = Game.creeps[selectedCreep];
         // decide the actions of our creep depending on its role memory
+        let fn;
+        let roomToBeIn = Game.spawns['Spawn1'].name;
         if (creep.memory.role === 'harvester') {
-            _ROOM.checkRoom(creep, _HARVESTER.run(creep));
+            fn - function() {_HARVESTER.run(creep)}
+            _ROOM.checkRoom(creep, roomToBeIn, fn);
         } else if (creep.memory.role === 'upgrader') {
-            _ROOM.checkRoom(creep, _UPGRADER.run(creep));
+            fn - function() {_UPGRADER.run(creep)}
+            _ROOM.checkRoom(creep, roomToBeIn, fn);
         } else if (creep.memory.role === 'builder') {
-            _ROOM.checkRoom(creep, _BUILDER.run(creep));
+            fn - function() {_BUILDER.run(creep)}
+            _ROOM.checkRoom(creep, roomToBeIn, fn);
         } else if (creep.memory.role === 'repairer') {
-            _ROOM.checkRoom(creep, _REPAIRER.run(creep));
+            fn - function() {_REPAIRER.run(creep)}
+            _ROOM.checkRoom(creep, roomToBeIn, fn);
         } else if (creep.memory.role === 'waller') {
-            _ROOM.checkRoom(creep, _WALLER.run(creep));
+            fn - function() {_WALLER.run(creep)}
+            _ROOM.checkRoom(creep, roomToBeIn, fn);
         }
     }
 }

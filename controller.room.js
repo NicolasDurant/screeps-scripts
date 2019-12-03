@@ -10,9 +10,9 @@ module.exports = {
     /**
      * Function that checks if screeps accidently are in the wrong room.
      */
-    checkRoom: function (creep, functionToExecute) {
-        if (creep.room.name === 'E18S13'){
-            creep.moveTo(Game.rooms['E19S13'])
+    checkRoom: function (creep, roomToBe, functionToExecute) {
+        if (creep.room.name != roomToBe){
+            creep.moveTo(new RoomPosition(25, 20, roomToBe))
         } else{
             functionToExecute()
         }
