@@ -53,7 +53,7 @@ module.exports = {
                         creep.say('To store 🚛')
                         creep.memory.status = `to_store`
                     }
-                    creep.moveTo(structures);
+                    creep.moveTo(structures, {reusePath: 5});
                 }
             }// there should always be somewhere to store
             else{}

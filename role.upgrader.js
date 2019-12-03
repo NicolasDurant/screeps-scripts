@@ -45,7 +45,7 @@ module.exports =  {
                     creep.say('To RCL 🚗 ')
                     creep.memory.status = `to_rcl`
                 }
-                creep.moveTo(roomController);
+                creep.moveTo(roomController, {reusePath: 5});
             }
         }
     }

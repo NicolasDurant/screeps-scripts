@@ -50,7 +50,7 @@ module.exports = {
                         creep.say('To wall 🧱')
                         creep.memory.status = `to_wall`
                     }
-                    creep.moveTo(walls);
+                    creep.moveTo(walls, {reusePath: 5});
                 }
             }// if there are no more walls to be repaired atm, we make the creep a builder
             else{
