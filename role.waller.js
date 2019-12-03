@@ -44,6 +44,9 @@ module.exports = {
                 }
             });
             // we want to heal the walls with lowest hitpoints first
+            walls.sort((a,b) => {
+               return a.hits - b.hits
+            });
             if (walls) {
                 if (creep.repair(walls) === ERR_NOT_IN_RANGE){
                     if (creep.memory.status != 'to_wall'){

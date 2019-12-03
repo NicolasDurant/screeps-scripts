@@ -40,9 +40,12 @@ module.exports = {
         else {
             const structures = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                 filter: (s) => {
-                    return s.hits < 5000 && s.structureType != STRUCTURE_WALL
+                    return s.hits < s.hitsMax && s.structureType != STRUCTURE_WALL
                 }
             });
+            structures.sort((a,b) => {
+                return a.hits - b.hits
+            })
             if (structures) {
                 if (creep.repair(structures) === ERR_NOT_IN_RANGE){
                     if (creep.memory.status != 'to_repair'){
