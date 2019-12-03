@@ -2,7 +2,7 @@
  * @author Nicolas Durant
  * @email nicolasdurant@t-online.de
  * @create date 2019-12-01 21:59:53
- * @modify date 2019-12-01 22:09:50
+ * @modify date 2019-12-03 11:13:17
  * @desc Role for screeps that should build construction sites.
  */
 var _UPGRADER = require('role.upgrader');
@@ -35,7 +35,7 @@ module.exports =  {
                     creep.say('To work 🤮')
                     creep.memory.status = `to_work`
                 }
-                creep.moveTo(target);
+                creep.moveTo(target, {reusePath: 5});
             }
         }
         // else we sent it to the next construction site to transfer energy

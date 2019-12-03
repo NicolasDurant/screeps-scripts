@@ -2,7 +2,7 @@
  * @author Nicolas Durant
  * @email nicolasdurant@t-online.de
  * @create date 2019-11-29 14:17:18
- * @modify date 2019-12-01 22:09:44
+ * @modify date 2019-12-03 11:13:13
  * @desc Upgrader Role for a Creep. It will harvest Energy and put it into the Room Controller.
  */
 
@@ -35,7 +35,7 @@ module.exports =  {
                     creep.say('To work 🤮')
                     creep.memory.status = `to_work`
                 }
-                creep.moveTo(target);
+                creep.moveTo(target, {reusePath: 5});
             }
         }
         // else we sent it to the room controller to transfer energy

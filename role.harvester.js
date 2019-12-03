@@ -2,7 +2,7 @@
  * @author Nicolas Durant
  * @email nicolasdurant@t-online.de
  * @create date 2019-11-29 14:18:41
- * @modify date 2019-12-02 10:44:15
+ * @modify date 2019-12-03 11:13:15
  * @desc Harvester Role for a Creep. It will harvest Energy and put it into the closest empty energy store.
  */
 
@@ -34,7 +34,7 @@ module.exports = {
                     creep.say('To work 🤮')
                     creep.memory.status = `to_work`
                 }
-                creep.moveTo(target);
+                creep.moveTo(target, {reusePath: 5});
             }
         }
         // else we sent it to the closest not filled energy store to unload its energy
