@@ -27,7 +27,7 @@ module.exports = {
         }
         // if the creep is idle, we sent it to the next source that is still harvestable (ACTIVE)
         if (creep.memory.idle) {
-            const target = creep.pos.findClosestByPath(FIND_SOURCES);
+            const target = creep.pos.findClosestByRange(FIND_SOURCES_ACTIVE);
             if (creep.harvest(target) === ERR_NOT_IN_RANGE){
                 if (creep.memory.status != 'to_work'){
                     creep.say('To work 🤮')
@@ -47,12 +47,12 @@ module.exports = {
                 structures.sort((a,b) => {
                     return a.hits - b.hits
                 })
-                if (creep.repair(structures) === ERR_NOT_IN_RANGE){
+                if (creep.repair(structures[0]) === ERR_NOT_IN_RANGE){
                     if (creep.memory.status != 'to_repair'){
                         creep.say('To repair 🔄')
                         creep.memory.status = `to_repair`
                     }
-                    creep.moveTo(structures, {reusePath: 5});
+                    creep.moveTo(structures[0], {reusePath: 5});
                 }
             }// if there are no more constructions to be build atm, we make the creep an upgrader
             else{
