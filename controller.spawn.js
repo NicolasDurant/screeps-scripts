@@ -43,10 +43,10 @@ module.exports = {
         // when we are under our minimum harvester count, we first generate more harvesters
         var newCreep = undefined;
         // maximum energy capacity 1/2 -> we spawn a creep when all containers are half filled
-        var energy = gameSpawn.room.energyCapacityAvailable * 3/4;
+        var energy = gameSpawn.room.energyCapacityAvailable * 1/2;
         if (numOfHarvesters < mem.minimumHarvesters) {
             newCreep = gameSpawn.createHarvesterCreep(energy, `harvester`, `to_base`);
-            if (newCreep == ERR_NOT_ENOUGH_ENERGY && mem.numOfHarvesters == 0) {
+            if (newCreep == ERR_NOT_ENOUGH_ENERGY && numOfHarvesters == 0) {
                 // spawn one with the minimum energy
                 newCreep = gameSpawn.createEqualCreep(200, `harvester`, `to_base`);
                 }
