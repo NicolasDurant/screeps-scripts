@@ -23,11 +23,12 @@ module.exports = {
         if (!mem.minimumWallers) mem.minimumWallers = 0;
         if (!mem.resourceIDs) {
             let array = spawn.room.find(FIND_SOURCES);
-            let resourceIds = ``
+            let resourceIds = ``;
             array.forEach(element => {
-                resourceIds += `${element.id},`
+                resourceIds += `|${element.id}|`
             });
-            mem.resourceIDs = resourceIds
+            mem.resourceIDs = resourceIds;
+            mem.resourceCount = array.length();
         }
         // current number of harvesters
         var numOfUpgraders = _.sum(creepsInSpawnRoom, (c) => c.memory.role === 'upgrader')
