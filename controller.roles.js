@@ -18,9 +18,7 @@ module.exports = {
     creepLogic: function (spawn) {
         var creepsInSpawnRoom = spawn.room.find(FIND_MY_CREEPS);
         // loop that executes the working commands for our creeps per tick
-        for (const i of creepsInSpawnRoom) {
-            // our creep
-            const creep = creepsInSpawnRoom[i];
+        for (const creep of creepsInSpawnRoom) {
             // decide the actions of our creep depending on its role memory
             let fn;
             let roomToBeIn = spawn.room.name;
