@@ -11,7 +11,7 @@ module.exports = {
      * Function that checks if there is any enemy in our room to shoot at it.
      */
     attackEnemies: function (spawn) {
-        const towers = Game.spawns[spawn].room.find(FIND_STRUCTURES, {
+        const towers = spawn.room.find(FIND_STRUCTURES, {
             filter: (s) => {
                 return s.structureType === STRUCTURE_TOWER
             }

@@ -16,14 +16,14 @@ module.exports = {
      * Function that checks if screeps accidently are in the wrong room.
      */
     creepLogic: function (spawn) {
-        var creepsInSpawnRoom = Game.spawns[spawn].room.find(FIND_MY_CREEPS);
+        var creepsInSpawnRoom = spawn.room.find(FIND_MY_CREEPS);
         // loop that executes the working commands for our creeps per tick
         for (const i of creepsInSpawnRoom) {
             // our creep
             const creep = creepsInSpawnRoom[i];
             // decide the actions of our creep depending on its role memory
             let fn;
-            let roomToBeIn = Game.spawns[spawn].room.name;
+            let roomToBeIn = spawn.room.name;
             if (creep.memory.role === 'harvester') {
                 fn = function() {_HARVESTER.run(creep)}
                 _ROOM.checkRoom(creep, roomToBeIn, fn);
