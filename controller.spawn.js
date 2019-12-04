@@ -22,7 +22,7 @@ module.exports = {
         if (!mem.minimumBuilders) mem.minimumBuilders = 0;
         if (!mem.minimumWallers) mem.minimumWallers = 0;
         if (!mem.resourceIDs) {
-            spawn.room.find(FIND_SOURCES);
+            let array = spawn.room.find(FIND_SOURCES);
             let resourceIds = ``
             array.forEach(element => {
                 resourceIds += `${element.id},`
