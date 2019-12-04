@@ -10,9 +10,9 @@ module.exports = {
     /**
      * Spwaning new creeps with a specified role.
      */
-    spawn: function () {
+    spawn: function (spawn) {
         // The spawn object is static for now.
-        const gameSpawn = Game.spawns['Spawn1']
+        const gameSpawn = spawn;
         // number of harvesters before we add other creeps
         const minimumUpgraders = 1;
         // number of harvesters before we add other creeps
