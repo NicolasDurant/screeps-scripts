@@ -23,7 +23,7 @@ module.exports = {
             let fn;
             let roomToBeIn = spawn.room.name;
             if (creep.memory.role === 'harvester') {
-                fn = function() {_HARVESTER.run(creep)}
+                fn = function() {_HARVESTER.harvest(creep)}
                 _ROOM.checkRoom(creep, roomToBeIn, fn);
             } else if (creep.memory.role === 'upgrader') {
                 fn = function() {_UPGRADER.run(creep)}

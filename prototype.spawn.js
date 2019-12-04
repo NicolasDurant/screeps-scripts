@@ -61,9 +61,10 @@ module.exports = function() {
         StructureSpawn.prototype.createHarvesterCreep =
         function(energy, roleName, status) {
             // create a carry focused creep
-            var numberOfParts = Math.floor(energy / 300);
+            var numberOfParts = Math.floor(energy / 400);
             var body = [];
             for (let i = 0; i < numberOfParts; i++) {
+                body.push(WORK);
                 body.push(WORK);
                 body.push(WORK);
             }
@@ -75,5 +76,14 @@ module.exports = function() {
             }
             // create creep with the created body and the given role
             return this.spawnCreep(body, roleName + Game.time, {memory: {role: roleName, idle: true, status: status }});
+        };
+
+        // create a new function for StructureSpawn that creates a miner that sits on a container
+        StructureSpawn.prototype.createMinerCreep =
+        function(status) {
+            // create a miner, it needs no carry part
+            var body = [WORK, WORK, WORK, WORK, WORK, MOVE];
+            // create creep with the created body and the given role
+            return this.spawnCreep(body, `Miner` + Game.time, {memory: {role: roleName, idle: true, status: status }});
         };
 };

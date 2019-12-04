@@ -15,7 +15,7 @@ module.exports = {
      * 
      * @memberOf Upgrader
      */
-    run: function (creep) {
+    harvest: function (creep) {
         // the creep is fully packed
         if (creep.memory.idle && creep.store.getUsedCapacity() === creep.store.getCapacity()){
             creep.say('Harvested👍')
@@ -71,5 +71,14 @@ module.exports = {
             }// there should always be somewhere to store
             else{}
         }
+    },
+
+
+    mine: function (creep) {
+
+    },
+    
+    lorry: function (creep) {
+
     }
 };
