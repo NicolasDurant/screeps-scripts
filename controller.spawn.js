@@ -28,7 +28,7 @@ module.exports = {
                 resourceIds += `|${element.id}|`
             });
             mem.resourceIDs = resourceIds;
-            mem.resourceCount = array.length();
+            mem.resourceCount = array.length;
         }
         // current number of harvesters
         var numOfUpgraders = _.sum(creepsInSpawnRoom, (c) => c.memory.role === 'upgrader')
