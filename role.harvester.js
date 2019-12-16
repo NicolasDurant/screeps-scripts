@@ -74,11 +74,15 @@ module.exports = {
     },
 
 
-    mine: function (creep) {
-
+    dropMine: function (creep) {
+        let source = this.gOBI(creep.memory.targetSource);
     },
     
     lorry: function (creep) {
+        let source = this.gOBI(creep.memory.targetSource);
+    },
 
-    }
+    gOBI: function(id){
+        return Game.getObjectById(id)
+    },
 };

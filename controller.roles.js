@@ -37,6 +37,12 @@ module.exports = {
             } else if (creep.memory.role === 'waller') {
                 fn = function() {_WALLER.run(creep)}
                 _ROOM.checkRoom(creep, roomToBeIn, fn);
+            } else if (creep.memory.role === 'miner') {
+                fn = function() {_HARVESTER.dropMine(creep)}
+                _ROOM.checkRoom(creep, roomToBeIn, fn);
+            } else if (creep.memory.role === 'lorry') {
+                fn = function() {_HARVESTER.lorry(creep)}
+                _ROOM.checkRoom(creep, roomToBeIn, fn);
             }
         }
     },
