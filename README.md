@@ -56,3 +56,6 @@ To make VS Code work with ScreepsAutocomplete to enjoy auto-completion functiona
 /// <reference path="Structures/StructureWall.js" />
 /// <reference path="Global/Constants.js" />
 ```
+### License
+
+screeps-scripts is [MIT licensed](./LICENSE).
