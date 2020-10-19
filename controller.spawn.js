@@ -16,9 +16,9 @@ module.exports = {
     const gameSpawn = spawn;
     const mem = gameSpawn.memory;
     // initialising spawn specific memory if there's none
-    if (!mem.minimumUpgraders) mem.minimumUpgraders = 1;
+    if (!mem.minimumUpgraders) mem.minimumUpgraders = 2;
     if (!mem.minimumRepairers) mem.minimumRepairers = 0;
-    if (!mem.minimumHarvesters) mem.minimumHarvesters = 1;
+    if (!mem.minimumHarvesters) mem.minimumHarvesters = 2;
     if (!mem.minimumBuilders) mem.minimumBuilders = 0;
     if (!mem.minimumWallers) mem.minimumWallers = 0;
     if (!mem.resourceIDs) {
@@ -61,7 +61,7 @@ module.exports = {
     var energy = gameSpawn.room.energyCapacityAvailable;
     if (numOfHarvesters < mem.minimumHarvesters) {
       newCreep = gameSpawn.createHarvesterCreep(energy, `harvester`, `to_base`);
-      if (newCreep == ERR_NOT_ENOUGH_ENERGY && numOfHarvesters == 0) {
+      if (newCreep == ERR_NOT_ENOUGH_ENERGY) {
         // spawn one with the minimum energy
         newCreep = gameSpawn.createEqualCreep(200, `harvester`, `to_base`);
       }
