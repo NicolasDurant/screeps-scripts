@@ -17,6 +17,10 @@ for (const spawns in Game.spawns) {
     if (
       !(+gameTime === gameTime && (!isFinite(gameTime) || !!(gameTime % 1)))
     ) {
+      // this generates pixels for our bucket full of unused cpu -5000
+      if(Game.cpu.bucket > 6000) {
+          Game.cpu.generatePixel();
+      }
       // spawn new creeps
       _SPAWN.spawn(element);
       // remove dead creeps from memory
